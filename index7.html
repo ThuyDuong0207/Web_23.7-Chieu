@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra SĐT Việt Nam</title>
+    <style>
+        .error {
+            color: red;
+        }
+        
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Nhập số điện thoại Việt Nam:</h3>
+    <input type="text" id="phoneInput" placeholder="0123456789">
+    <button id="btnCheckPhone">Kiểm tra</button>
+    <p id="resultPhone"></p>
+
+    <script>
+        var btn = document.getElementById("btnCheckPhone");
+
+        btn.onclick = function checkPhone() {
+            var phone = document.getElementById("phoneInput").value.trim();
+            var result = document.getElementById("resultPhone");
+            var pattern = /^0\d{9}$/;
+
+
+
+            if (phone === "") {
+                result.textContent = "Bạn chưa nhập số điện thoại.";
+                result.className = "error";
+            } else if (!pattern.test(phone)) {
+                result.textContent = "Số điện thoại không hợp lệ. Phải có 10 chữ số và bắt đầu bằng số 0.";
+                result.className = "error";
+            } else {
+                result.textContent = "Số điện thoại hợp lệ!";
+                result.className = "success";
+            }
+        };
+    </script>
+</body>
+
+</html>

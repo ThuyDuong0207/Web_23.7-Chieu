@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error {
+            color: red;
+        }
+        
+        .success {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="inputValue" placeholder="Nhập số">
+    <button id="btnCheck">Check</button>
+    <p id="ketqua"></p>
+
+
+
+    <script>
+        var input = document.getElementById("inputValue");
+        var btn = document.getElementById("btnCheck");
+        var result = document.getElementById("ketqua");
+
+
+        btn.onclick = function() {
+            var value = input.value.trim();
+            result.className = "";
+            result.innerText = "";
+            if (value === "") {
+                result.innerText = "Vui lòng nhập giá trị";
+                result.className = "error";
+            }
+            if (!isNaN(value)) {
+                result.innerText = "Bạn vừa nhập số";
+                result.className = "success";
+            } else {
+                result.innerText = "Bạn vừa nhập chữ";
+                result.className = "error";
+            }
+        };
+    </script>
+</body>
+
+</html>

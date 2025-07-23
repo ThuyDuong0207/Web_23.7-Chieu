@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra họ tên</title>
+    <style>
+        .error {
+            color: red;
+        }
+        
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Nhập họ và tên:</h3>
+    <input type="text" id="nameInput" placeholder="Trần Thị Thùy Dương">
+    <button id="btnCheckName">Kiểm tra</button>
+    <p id="resultName"></p>
+
+    <script>
+        var btn = document.getElementById("btnCheckName");
+
+        btn.onclick = function checkName() {
+            var name = document.getElementById("nameInput").value.trim();
+            var result = document.getElementById("resultName");
+
+            var pattern = /^([A-Za-zÀ-Ỹà-ỹ]{2,}\s){1,}[A-Za-zÀ-Ỹà-ỹ]{2,}$/;
+
+            if (name === "") {
+                result.textContent = "Bạn chưa nhập họ tên.";
+                result.className = "error";
+            } else if (!pattern.test(name)) {
+                result.textContent = "Họ tên không hợp lệ. Không được chứa số hoặc ký tự đặc biệt.";
+                result.className = "error";
+            } else {
+                result.textContent = "Họ tên hợp lệ";
+                result.className = "success";
+            }
+        };
+    </script>
+</body>
+
+</html>

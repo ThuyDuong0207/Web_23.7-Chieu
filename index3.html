@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra ngày sinh hợp lệ</title>
+    <style>
+        .error {
+            color: red;
+        }
+        
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="dob" placeholder="dd/mm/yyyy">
+    <button onclick="check()">Kiểm tra</button>
+    <p id="kq"></p>
+
+    <script>
+        function check() {
+            var dob = document.getElementById("dob").value.trim();
+            var kq = document.getElementById("kq");
+            var pattern = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+
+            if (!dob) {
+                kq.textContent = "Chưa nhập ngày sinh.";
+                kq.className = "error";
+            } else if (!pattern.test(dob)) {
+                kq.textContent = "Định dạng sai. Nhập dd/mm/yyyy";
+                kq.className = "error";
+            } else {
+                var [d, m, y] = dob.split("/").map(Number);
+                var date = new Date(y, m - 1, d);
+
+                if (date.getDate() === d && date.getMonth() === m - 1 && date.getFullYear() === y) {
+                    kq.textContent = "Ngày sinh hợp lệ!";
+                    kq.className = "success";
+                } else {
+                    kq.textContent = "Ngày không tồn tại.";
+                    kq.className = "error";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
