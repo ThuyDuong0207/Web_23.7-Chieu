@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra định dạng ngày</title>
+    <style>
+        .error {
+            background-color: red;
+        }
+        
+        .success {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Nhập ngày (DD-MM-YYYY hoặc DD-MM-YYYY):</h3>
+    <input type="text" id="dateInput" placeholder=" 10-03-2005 hoặc 10/03/2005">
+    <button id="btncheck">Kiểm tra định dạng </button>
+    <p id="ketqua"></p>
+    <script>
+        var input = document.getElementById("dateInput");
+        var result = document.getElementById("ketqua");
+        var btn = document.getElementById("btncheck");
+
+        btn.onclick = function() {
+            var value = input.value.trim();
+            result.className = '';
+            result.innerText = '';
+            if (value === '') {
+                result.innterText = 'Vui lòng nhập ngày';
+                result.className = 'error';
+                return;
+            }
+
+            var pattern = /^(\d{2})[\/-](\d{2})[\/-](\d{4})$/;
+
+            if (pattern.test(value)) {
+                result.innerText = 'Định dạng hợp lệ';
+                result.className = 'success';
+            } else {
+                result.innerText = 'Định dạng không hợp lệ';
+                result.className = 'error';
+            }
+        };
+    </script>
+</body>
+
+</html>

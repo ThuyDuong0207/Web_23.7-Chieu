@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra mã bệnh nhân</title>
+    <style>
+        .error {
+            color: red;
+        }
+        
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h3> Nhập mã bệnh nhân (Ví dụ: BN-20230701-001)</h3>
+    <input type="text" id="MaInput" placeholder="BN-20230701-001">
+    <button id="btncheck">Kiểm tra</button>
+    <p id="ketqua"></p>
+    <script>
+        var input = document.getElementById("MaInput");
+        var result = document.getElementById("ketqua");
+        var btn = document.getElementById("btncheck");
+
+        btn.onclick = function() {
+            var value = input.value.trim();
+            result.className = '';
+            result.innerText = '';
+
+            if (value === '') {
+                result.innerText = 'Vui lòng nhập mã bệnh nhân';
+                result.className = 'error';
+                return;
+            }
+            var pattern = /^BN-\d{8}-\d{3}$/;
+            if (pattern.test(value)) {
+                result.innerText = 'Mã bệnh nhân hợp lệ';
+                result.className = 'success';
+            } else {
+                result.innerText = 'Mã bệnh nhân không hợp lệ';
+                result.className = 'error';
+            }
+        };
+    </script>
+</body>
+
+</html>
