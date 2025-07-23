@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra mật khẩu an toàn</title>
+    <style>
+        .error {
+            color: red;
+        }
+        
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Nhập số CCCD (9 hoặc 12 chữ số):</h3>
+    <input type="text" id="cccdInput" placeholder="123456789 hoặc 123456789012">
+    <button id="btnCheckCCCD">Kiểm tra CCCD</button>
+    <p id="ketquaCCCD"></p>
+
+    <script>
+        var cccdInput = document.getElementById("cccdInput");
+        var cccdResult = document.getElementById("ketquaCCCD");
+        var cccdBtn = document.getElementById("btnCheckCCCD");
+
+        cccdBtn.onclick = function() {
+            var value = cccdInput.value.trim();
+            cccdResult.className = '';
+            cccdResult.innerText = '';
+
+            if (value === '') {
+                cccdResult.innerText = 'Vui lòng nhập số CCCD';
+                cccdResult.className = 'error';
+                return;
+            }
+
+            var cccdPattern = /^\d{9}$|^\d{12}$/;
+
+            if (cccdPattern.test(value)) {
+                cccdResult.innerText = 'Số CCCD hợp lệ';
+                cccdResult.className = 'success';
+            } else {
+                cccdResult.innerText = 'Số CCCD không hợp lệ (phải gồm 9 hoặc 12 chữ số)';
+                cccdResult.className = 'error';
+            }
+        };
+    </script>
+</body>
+
+</html>
